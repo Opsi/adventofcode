@@ -6,11 +6,22 @@ import (
 )
 
 func firstDigit(line string) (int, error) {
-	return 0, nil
+	for _, c := range line {
+		if c >= '0' && c <= '9' {
+			return int(c - '0'), nil
+		}
+	}
+	return 0, fmt.Errorf("no digit found")
 }
 
 func lastDigit(line string) (int, error) {
-	return 0, nil
+	for i := len(line) - 1; i >= 0; i-- {
+		c := line[i]
+		if c >= '0' && c <= '9' {
+			return int(c - '0'), nil
+		}
+	}
+	return 0, fmt.Errorf("no digit found")
 }
 
 func lineValue(line string) (int, error) {
@@ -25,7 +36,7 @@ func lineValue(line string) (int, error) {
 	return 10*first + last, nil
 }
 
-func CalibrationValue(document string) (int, error) {
+func OneOne(document string) (int, error) {
 	trimmed := strings.TrimSpace(document)
 	sum := 0
 	for i, line := range strings.Split(trimmed, "\n") {
@@ -33,7 +44,7 @@ func CalibrationValue(document string) (int, error) {
 		if err != nil {
 			return 0, fmt.Errorf("line value of line %d: %v", i, err)
 		}
-		fmt.Printf("line %d: %d\n", i, value)
+		sum += value
 	}
 	return sum, nil
 }
