@@ -28,6 +28,14 @@ func run() error {
 		}
 		fmt.Println(value)
 		return nil
+	case "1.2":
+		document := readDocument("input/one.txt")
+		value, err := adventofcode.OneTwo(document)
+		if err != nil {
+			return fmt.Errorf("one two: %v", err)
+		}
+		fmt.Println(value)
+		return nil
 	default:
 		return fmt.Errorf("unknown puzzle %s", puzzle)
 	}
