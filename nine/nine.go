@@ -2,14 +2,32 @@ package nine
 
 import (
 	"fmt"
+	"slices"
 	"strconv"
 	"strings"
 )
 
-func NineOne(document string) (int, error) {
+func One(document string) (int, error) {
 	trimmed := strings.TrimSpace(document)
 	sum := 0
 	for i, line := range strings.Split(trimmed, "\n") {
+		value, err := lineValueOne(line)
+		if err != nil {
+			return 0, fmt.Errorf("line value of line %d: %v", i, err)
+		}
+		sum += value
+	}
+	return sum, nil
+}
+
+func Two(document string) (int, error) {
+	trimmed := strings.TrimSpace(document)
+	sum := 0
+	for i, line := range strings.Split(trimmed, "\n") {
+		// we just reverse the line and use the same function
+		intStrings := strings.Split(line, " ")
+		slices.Reverse(intStrings)
+		line = strings.Join(intStrings, " ")
 		value, err := lineValueOne(line)
 		if err != nil {
 			return 0, fmt.Errorf("line value of line %d: %v", i, err)

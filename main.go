@@ -39,9 +39,17 @@ func run() error {
 		return nil
 	case "9.1":
 		document := readDocument("input/nine.txt")
-		value, err := nine.NineOne(document)
+		value, err := nine.One(document)
 		if err != nil {
 			return fmt.Errorf("nine one: %v", err)
+		}
+		fmt.Println(value)
+		return nil
+	case "9.2":
+		document := readDocument("input/nine.txt")
+		value, err := nine.Two(document)
+		if err != nil {
+			return fmt.Errorf("nine two: %v", err)
 		}
 		fmt.Println(value)
 		return nil
