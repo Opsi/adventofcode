@@ -7,6 +7,17 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestNineOne(t *testing.T) {
+	document := `
+	0 3 6 9 12 15
+	1 3 6 10 15 21
+	10 13 16 21 30 45
+	`
+	cv, err := NineOne(document)
+	require.NoError(t, err)
+	assert.Equal(t, 114, cv)
+}
+
 func TestLineValueOne(t *testing.T) {
 	cases := []struct {
 		line string

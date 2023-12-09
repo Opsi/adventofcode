@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/Opsi/adventofcode/adventofcode"
+	"github.com/Opsi/adventofcode/nine"
 )
 
 func main() {
@@ -33,6 +34,14 @@ func run() error {
 		value, err := adventofcode.OneTwo(document)
 		if err != nil {
 			return fmt.Errorf("one two: %v", err)
+		}
+		fmt.Println(value)
+		return nil
+	case "9.1":
+		document := readDocument("input/nine.txt")
+		value, err := nine.NineOne(document)
+		if err != nil {
+			return fmt.Errorf("nine one: %v", err)
 		}
 		fmt.Println(value)
 		return nil
