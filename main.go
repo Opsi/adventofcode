@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Opsi/adventofcode/five"
 	"github.com/Opsi/adventofcode/four"
 	"github.com/Opsi/adventofcode/nine"
 	"github.com/Opsi/adventofcode/one"
@@ -41,6 +42,8 @@ func run() error {
 		return calcAnswer("input/four.txt", four.One)
 	case "4.2":
 		return calcAnswer("input/four.txt", four.Two)
+	case "5.1":
+		return calcAnswer("input/five.txt", five.One)
 	case "9.1":
 		return calcAnswer("input/nine.txt", nine.One)
 	case "9.2":

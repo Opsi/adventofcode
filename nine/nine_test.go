@@ -3,6 +3,7 @@ package nine
 import (
 	"testing"
 
+	"github.com/Opsi/adventofcode/util"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -61,7 +62,7 @@ func TestNextSequence(t *testing.T) {
 		{"2 2 2 2", "0 0 0"},
 	}
 	for _, c := range cases {
-		asInts, err := toInts(c.sequence)
+		asInts, err := util.ParseSpaceSeparatedInts(c.sequence)
 		require.NoError(t, err)
 		got, err := nextSequence(asInts)
 		require.NoError(t, err)

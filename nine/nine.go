@@ -5,6 +5,8 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+
+	"github.com/Opsi/adventofcode/util"
 )
 
 func One(lines []string) (int, error) {
@@ -38,7 +40,7 @@ func Two(lines []string) (int, error) {
 func lineValueOne(line string) (int, error) {
 	sequences := make([][]int, 1)
 	var err error
-	sequences[0], err = toInts(line)
+	sequences[0], err = util.ParseSpaceSeparatedInts(line)
 	if err != nil {
 		return 0, fmt.Errorf("parse line: %v", err)
 	}
@@ -81,20 +83,6 @@ func isZeroSequence(sequence []int) bool {
 		}
 	}
 	return true
-}
-
-func toInts(sequence string) ([]int, error) {
-	subs := strings.Split(sequence, " ")
-	ints := make([]int, len(subs))
-	for i, sub := range subs {
-		trimmed := strings.TrimSpace(sub)
-		var err error
-		ints[i], err = strconv.Atoi(trimmed)
-		if err != nil {
-			return nil, fmt.Errorf("parse int '%s': %v", trimmed, err)
-		}
-	}
-	return ints, nil
 }
 
 func asString(ints []int) string {
