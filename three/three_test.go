@@ -60,3 +60,21 @@ func TestOne(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, 4361, got)
 }
+
+func TestTwo(t *testing.T) {
+	lines := []string{
+		"467..114..",
+		"...*......",
+		"..35..633.",
+		"......#...",
+		"617*......",
+		".....+.58.",
+		"..592.....",
+		"......755.",
+		"...$.*....",
+		".664.598..",
+	}
+	got, err := Two(lines)
+	require.NoError(t, err)
+	assert.Equal(t, 467835, got)
+}

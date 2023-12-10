@@ -38,6 +38,47 @@ func (f Field) HasSymbolNeighbour(row, col int) bool {
 	return false
 }
 
+func (f Field) GearRatio(row, col int) int {
+	if f.Cells[row][col] != -2 {
+		return -1
+	}
+	// find the neighbouring ids
+	ids := make(map[int]struct{})
+	for rd := -1; rd <= 1; rd++ {
+		for cd := -1; cd <= 1; cd++ {
+			if rd == 0 && cd == 0 {
+				continue
+			}
+			row := row + rd
+			col := col + cd
+			if row < 0 || row >= len(f.Cells) {
+				continue
+			}
+			if col < 0 || col >= len(f.Cells[row]) {
+				continue
+			}
+			value := f.Cells[row][col]
+			if value <= 0 {
+				continue
+			}
+			ids[value] = struct{}{}
+			if len(ids) > 2 {
+				// too many parts
+				return -1
+			}
+		}
+	}
+	if len(ids) != 2 {
+		// not enough parts
+		return -1
+	}
+	product := 1
+	for id := range ids {
+		product *= f.IDValues[id]
+	}
+	return product
+}
+
 func One(lines []string) (int, error) {
 	field, err := parseField(lines)
 	if err != nil {
@@ -62,6 +103,23 @@ func One(lines []string) (int, error) {
 	return sum, nil
 }
 
+func Two(lines []string) (int, error) {
+	field, err := parseField(lines)
+	if err != nil {
+		return 0, fmt.Errorf("parse field: %v", err)
+	}
+	sum := 0
+	for row := 0; row < len(field.Cells); row++ {
+		for col := 0; col < len(field.Cells[row]); col++ {
+			gearRatio := field.GearRatio(row, col)
+			if gearRatio > 0 {
+				sum += gearRatio
+			}
+		}
+	}
+	return sum, nil
+}
+
 func parseField(lines []string) (Field, error) {
 	field := Field{
 		Cells:    make([][]int, len(lines)),
@@ -73,16 +131,6 @@ func parseField(lines []string) (Field, error) {
 		currNrString := ""
 		for col, c := range line {
 			switch {
-			case c == '.':
-				field.Cells[row][col] = 0
-				if currNrString != "" {
-					nr, err := strconv.Atoi(currNrString)
-					if err != nil {
-						return Field{}, fmt.Errorf("parse number string '%s': %v", currNrString, err)
-					}
-					field.IDValues[currID] = nr
-					currNrString = ""
-				}
 			case strings.ContainsRune("0123456789", c):
 				if currNrString == "" {
 					currID++
@@ -90,7 +138,16 @@ func parseField(lines []string) (Field, error) {
 				field.Cells[row][col] = currID
 				currNrString += string(c)
 			default:
-				field.Cells[row][col] = -1
+				var value int
+				switch c {
+				case '.': // empty
+					value = 0
+				case '*': // gear
+					value = -2
+				default: // symbol
+					value = -1
+				}
+				field.Cells[row][col] = value
 				if currNrString != "" {
 					nr, err := strconv.Atoi(currNrString)
 					if err != nil {
