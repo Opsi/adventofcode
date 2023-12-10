@@ -6,6 +6,7 @@ import (
 
 	"github.com/Opsi/adventofcode/nine"
 	"github.com/Opsi/adventofcode/one"
+	"github.com/Opsi/adventofcode/util"
 )
 
 func main() {
@@ -22,46 +23,27 @@ func run() error {
 	puzzle := os.Args[1]
 	switch puzzle {
 	case "1.1":
-		document := readDocument("input/one.txt")
-		value, err := one.One(document)
-		if err != nil {
-			return fmt.Errorf("one one: %v", err)
-		}
-		fmt.Println(value)
-		return nil
+		return calcAnswer("input/one.txt", one.One)
 	case "1.2":
-		document := readDocument("input/one.txt")
-		value, err := one.Two(document)
-		if err != nil {
-			return fmt.Errorf("one two: %v", err)
-		}
-		fmt.Println(value)
-		return nil
+		return calcAnswer("input/one.txt", one.Two)
 	case "9.1":
-		document := readDocument("input/nine.txt")
-		value, err := nine.One(document)
-		if err != nil {
-			return fmt.Errorf("nine one: %v", err)
-		}
-		fmt.Println(value)
-		return nil
+		return calcAnswer("input/nine.txt", nine.One)
 	case "9.2":
-		document := readDocument("input/nine.txt")
-		value, err := nine.Two(document)
-		if err != nil {
-			return fmt.Errorf("nine two: %v", err)
-		}
-		fmt.Println(value)
-		return nil
+		return calcAnswer("input/nine.txt", nine.Two)
 	default:
 		return fmt.Errorf("unknown puzzle %s", puzzle)
 	}
 }
 
-func readDocument(path string) string {
-	data, err := os.ReadFile(path)
+func calcAnswer(path string, answerFunc func([]string) (int, error)) error {
+	lines, err := util.ReadLines(path)
 	if err != nil {
-		panic(fmt.Errorf("read file: %v", err))
+		return fmt.Errorf("read lines: %v", err)
 	}
-	return string(data)
+	value, err := answerFunc(lines)
+	if err != nil {
+		return fmt.Errorf("calculate answer: %v", err)
+	}
+	fmt.Println(value)
+	return nil
 }

@@ -3,13 +3,11 @@ package one
 import (
 	"fmt"
 	"regexp"
-	"strings"
 )
 
-func One(document string) (int, error) {
-	trimmed := strings.TrimSpace(document)
+func One(lines []string) (int, error) {
 	sum := 0
-	for i, line := range strings.Split(trimmed, "\n") {
+	for i, line := range lines {
 		value, err := lineValueOne(line)
 		if err != nil {
 			return 0, fmt.Errorf("line value of line %d: %v", i, err)
@@ -19,10 +17,9 @@ func One(document string) (int, error) {
 	return sum, nil
 }
 
-func Two(document string) (int, error) {
-	trimmed := strings.TrimSpace(document)
+func Two(lines []string) (int, error) {
 	sum := 0
-	for i, line := range strings.Split(trimmed, "\n") {
+	for i, line := range lines {
 		value, err := lineValueTwo(line)
 		if err != nil {
 			return 0, fmt.Errorf("line value of line %d: %v", i, err)

@@ -75,13 +75,13 @@ func TestLineValueOne(t *testing.T) {
 }
 
 func TestOneExample(t *testing.T) {
-	document := `
-	1abc2
-	pqr3stu8vwx
-	a1b2c3d4e5f
-	treb7uchet
-	`
-	cv, err := One(document)
+	lines := []string{
+		"1abc2",
+		"pqr3stu8vwx",
+		"a1b2c3d4e5f",
+		"treb7uchet",
+	}
+	cv, err := One(lines)
 	require.NoError(t, err)
 	assert.Equal(t, 142, cv)
 }
@@ -178,16 +178,16 @@ func TestLineValueTwo(t *testing.T) {
 }
 
 func TestTwoExample(t *testing.T) {
-	document := `
-	two1nine
-	eightwothree
-	abcone2threexyz
-	xtwone3four
-	4nineeightseven2
-	zoneight234
-	7pqrstsixteen
-	`
-	cv, err := Two(document)
+	lines := []string{
+		"two1nine",
+		"eightwothree",
+		"abcone2threexyz",
+		"xtwone3four",
+		"4nineeightseven2",
+		"zoneight234",
+		"7pqrstsixteen",
+	}
+	cv, err := Two(lines)
 	require.NoError(t, err)
 	assert.Equal(t, 281, cv)
 }

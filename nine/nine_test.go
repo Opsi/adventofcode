@@ -8,23 +8,23 @@ import (
 )
 
 func TestOne(t *testing.T) {
-	document := `
-	0 3 6 9 12 15
-	1 3 6 10 15 21
-	10 13 16 21 30 45
-	`
-	cv, err := One(document)
+	lines := []string{
+		"0 3 6 9 12 15",
+		"1 3 6 10 15 21",
+		"10 13 16 21 30 45",
+	}
+	cv, err := One(lines)
 	require.NoError(t, err)
 	assert.Equal(t, 114, cv)
 }
 
 func TestTwo(t *testing.T) {
-	document := `
-	0 3 6 9 12 15
-	1 3 6 10 15 21
-	10 13 16 21 30 45
-	`
-	cv, err := Two(document)
+	lines := []string{
+		"0 3 6 9 12 15",
+		"1 3 6 10 15 21",
+		"10 13 16 21 30 45",
+	}
+	cv, err := Two(lines)
 	require.NoError(t, err)
 	assert.Equal(t, 2, cv)
 }
