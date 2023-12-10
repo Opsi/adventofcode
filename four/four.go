@@ -14,6 +14,16 @@ type Card struct {
 	Winning   []int
 }
 
+func (c Card) WinningNumbers() int {
+	sum := 0
+	for _, nr := range c.Winning {
+		if slices.Contains(c.Scratched, nr) {
+			sum++
+		}
+	}
+	return sum
+}
+
 func (c Card) Points() int {
 	sum := 0
 	for _, nr := range c.Winning {
@@ -83,5 +93,25 @@ func One(lines []string) (int, error) {
 }
 
 func Two(lines []string) (int, error) {
-	return 0, nil
+	cardValues := make([]int, len(lines))
+	cardAmount := make([]int, len(lines))
+	for i, line := range lines {
+		card, err := parseCard(line)
+		if err != nil {
+			return 0, fmt.Errorf("parse card: %v", err)
+		}
+		cardValues[i] = card.WinningNumbers()
+		cardAmount[i] = 1
+	}
+	total := 0
+	for i := 0; i < len(cardValues); i++ {
+		amount := cardAmount[i]
+		total += amount
+		value := cardValues[i]
+		upperBound := min(len(cardValues), i+value+1)
+		for j := i + 1; j < upperBound; j++ {
+			cardAmount[j] += amount
+		}
+	}
+	return total, nil
 }
