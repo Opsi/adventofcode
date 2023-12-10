@@ -1,4 +1,4 @@
-package adventofcode
+package one
 
 import (
 	"testing"
@@ -74,14 +74,14 @@ func TestLineValueOne(t *testing.T) {
 	}
 }
 
-func TestOneOneExample(t *testing.T) {
+func TestOneExample(t *testing.T) {
 	document := `
 	1abc2
 	pqr3stu8vwx
 	a1b2c3d4e5f
 	treb7uchet
 	`
-	cv, err := OneOne(document)
+	cv, err := One(document)
 	require.NoError(t, err)
 	assert.Equal(t, 142, cv)
 }
@@ -177,7 +177,7 @@ func TestLineValueTwo(t *testing.T) {
 	}
 }
 
-func TestOneTwoExample(t *testing.T) {
+func TestTwoExample(t *testing.T) {
 	document := `
 	two1nine
 	eightwothree
@@ -187,7 +187,7 @@ func TestOneTwoExample(t *testing.T) {
 	zoneight234
 	7pqrstsixteen
 	`
-	cv, err := OneTwo(document)
+	cv, err := Two(document)
 	require.NoError(t, err)
 	assert.Equal(t, 281, cv)
 }

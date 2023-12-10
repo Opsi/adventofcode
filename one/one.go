@@ -1,4 +1,4 @@
-package adventofcode
+package one
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func OneOne(document string) (int, error) {
+func One(document string) (int, error) {
 	trimmed := strings.TrimSpace(document)
 	sum := 0
 	for i, line := range strings.Split(trimmed, "\n") {
@@ -19,7 +19,7 @@ func OneOne(document string) (int, error) {
 	return sum, nil
 }
 
-func OneTwo(document string) (int, error) {
+func Two(document string) (int, error) {
 	trimmed := strings.TrimSpace(document)
 	sum := 0
 	for i, line := range strings.Split(trimmed, "\n") {

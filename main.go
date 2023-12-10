@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Opsi/adventofcode/adventofcode"
 	"github.com/Opsi/adventofcode/nine"
+	"github.com/Opsi/adventofcode/one"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func run() error {
 	switch puzzle {
 	case "1.1":
 		document := readDocument("input/one.txt")
-		value, err := adventofcode.OneOne(document)
+		value, err := one.One(document)
 		if err != nil {
 			return fmt.Errorf("one one: %v", err)
 		}
@@ -31,7 +31,7 @@ func run() error {
 		return nil
 	case "1.2":
 		document := readDocument("input/one.txt")
-		value, err := adventofcode.OneTwo(document)
+		value, err := one.Two(document)
 		if err != nil {
 			return fmt.Errorf("one two: %v", err)
 		}
