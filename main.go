@@ -44,6 +44,8 @@ func run() error {
 		return calcAnswer("input/four.txt", four.Two)
 	case "5.1":
 		return calcAnswer("input/five.txt", five.One)
+	case "5.2":
+		return calcAnswer("input/five.txt", five.Two)
 	case "9.1":
 		return calcAnswer("input/nine.txt", nine.One)
 	case "9.2":
