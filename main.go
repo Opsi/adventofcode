@@ -8,6 +8,7 @@ import (
 	"github.com/Opsi/adventofcode/four"
 	"github.com/Opsi/adventofcode/nine"
 	"github.com/Opsi/adventofcode/one"
+	"github.com/Opsi/adventofcode/six"
 	"github.com/Opsi/adventofcode/three"
 	"github.com/Opsi/adventofcode/two"
 	"github.com/Opsi/adventofcode/util"
@@ -46,6 +47,8 @@ func run() error {
 		return calcAnswer("input/five.txt", five.One)
 	case "5.2":
 		return calcAnswer("input/five.txt", five.Two)
+	case "6.1":
+		return calcAnswer("input/six.txt", six.One)
 	case "9.1":
 		return calcAnswer("input/nine.txt", nine.One)
 	case "9.2":
