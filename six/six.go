@@ -2,6 +2,7 @@ package six
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/Opsi/adventofcode/util"
@@ -13,13 +14,13 @@ type Race struct {
 }
 
 func (r Race) WaysToWin() int {
-	sum := 0
-	for buttonTime := 1; buttonTime < r.Time; buttonTime++ {
+	smallestBTToWin, _ := sort.Find(r.Time/2, func(buttonTime int) int {
 		if distance(r.Time, buttonTime) > r.Distance {
-			sum++
+			return -1
 		}
-	}
-	return sum
+		return 1
+	})
+	return (r.Time + 1) - 2*smallestBTToWin
 }
 
 func distance(raceTime, buttonTime int) int {
@@ -71,4 +72,18 @@ func One(lines []string) (int, error) {
 		product *= race.WaysToWin()
 	}
 	return product, nil
+}
+
+func Two(lines []string) (int, error) {
+	for i, line := range lines {
+		lines[i] = strings.ReplaceAll(line, " ", "")
+	}
+	races, err := parseInput(lines)
+	if err != nil {
+		return 0, fmt.Errorf("parse input: %v", err)
+	}
+	if len(races) != 1 {
+		return 0, fmt.Errorf("there should only be one race in two")
+	}
+	return races[0].WaysToWin(), nil
 }

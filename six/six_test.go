@@ -17,6 +17,16 @@ func TestOne(t *testing.T) {
 	assert.Equal(t, 288, got)
 }
 
+func TestTwo(t *testing.T) {
+	lines := []string{
+		"Time:      7  15   30",
+		"Distance:  9  40  200",
+	}
+	got, err := Two(lines)
+	require.NoError(t, err)
+	assert.Equal(t, 71503, got)
+}
+
 func TestWaysToWin(t *testing.T) {
 	cases := []struct {
 		race Race
