@@ -5,6 +5,7 @@ import (
 	"os"
 	"regexp"
 
+	"github.com/Opsi/adventofcode/eight"
 	"github.com/Opsi/adventofcode/five"
 	"github.com/Opsi/adventofcode/four"
 	"github.com/Opsi/adventofcode/nine"
@@ -41,6 +42,8 @@ func run() error {
 		"6.2": six.Two,
 		"7.1": seven.One,
 		"7.2": seven.Two,
+		"8.1": eight.One,
+		"8.2": eight.Two,
 		"9.1": nine.One,
 		"9.2": nine.Two,
 	}
