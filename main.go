@@ -9,6 +9,7 @@ import (
 	"github.com/Opsi/adventofcode/four"
 	"github.com/Opsi/adventofcode/nine"
 	"github.com/Opsi/adventofcode/one"
+	"github.com/Opsi/adventofcode/seven"
 	"github.com/Opsi/adventofcode/six"
 	"github.com/Opsi/adventofcode/three"
 	"github.com/Opsi/adventofcode/two"
@@ -38,6 +39,8 @@ func run() error {
 		"5.2": five.Two,
 		"6.1": six.One,
 		"6.2": six.Two,
+		"7.1": seven.One,
+		"7.2": seven.Two,
 		"9.1": nine.One,
 		"9.2": nine.Two,
 	}
